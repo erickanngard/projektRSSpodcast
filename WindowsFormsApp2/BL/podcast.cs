@@ -6,6 +6,7 @@ public class Podcast
     private string category;
     public string url { get; set; }
     public int interval { get; set; }
+    public Array[] episodes;
     
 
 

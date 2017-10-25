@@ -16,6 +16,8 @@ namespace WindowsFormsApp2
         public Form1()
         {
             InitializeComponent();
+            PodcastController pc = new PodcastController();
+            comboBoxPodcast.DataSource = pc.arrayOfPodcast();
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -46,7 +48,12 @@ namespace WindowsFormsApp2
             int i = Convert.ToInt32(numericUpDownFrekvens.Value);
             PodcastController pc = new PodcastController();
             pc.createPodcast(title, category, url, i);
-            MessageBox.Show(this.textBoxUrl.Text);
+            MessageBox.Show("Sucsess Title="+ title +" Category="+ category +" Url="+ url+" Intervall="+ i );
+        }
+
+        private void comboBoxPodcast_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
