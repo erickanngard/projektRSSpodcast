@@ -4,13 +4,18 @@ public class Podcast
 {
     private string title;
     private string category;
+    public string url { get; set; }
+    public int interval { get; set; }
+    
 
 
-	public Podcast( String title, String category)
+	public Podcast( String title, String category, String url, int interval)
 	{
         this.title = title;
         this.category = category;
-	}
+        this.url = url;
+        this.interval = interval;
+    }
 
     public void SetTitel(String title)
     {
@@ -28,5 +33,5 @@ public class Podcast
     {
         return this.category;
     }
-
+    
 }

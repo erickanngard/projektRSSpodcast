@@ -45,15 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\PodcastController.cs" />
     <Compile Include="BL\Validator.cs" />
-    <Compile Include="BL\XmlGenerator.cs" />
+    <Compile Include="DL\XmlGenerator.cs" />
     <Compile Include="PL\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PL\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="DL\podcast.cs" />
+    <Compile Include="BL\podcast.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PL\Form1.resx">
