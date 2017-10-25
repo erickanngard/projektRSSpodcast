@@ -12,7 +12,7 @@ public class Validator
 
     public bool ValidateText (String t)
     {
-        return result; // returns bool if its sucessfull
+        return result; // returns bool if its sucessfull sdsd
 
     }
 }
