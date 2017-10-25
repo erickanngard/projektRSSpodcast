@@ -39,6 +39,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonPodcast = new System.Windows.Forms.Button();
+            this.textBoxCat = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFrekvens)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,11 +160,31 @@
             this.buttonPodcast.UseVisualStyleBackColor = true;
             this.buttonPodcast.Click += new System.EventHandler(this.buttonPodcast_Click);
             // 
+            // textBoxCat
+            // 
+            this.textBoxCat.Location = new System.Drawing.Point(13, 213);
+            this.textBoxCat.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCat.Name = "textBoxCat";
+            this.textBoxCat.Size = new System.Drawing.Size(191, 20);
+            this.textBoxCat.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 198);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Category";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(662, 425);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBoxCat);
             this.Controls.Add(this.buttonPodcast);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -197,6 +219,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonPodcast;
+        private System.Windows.Forms.TextBox textBoxCat;
+        private System.Windows.Forms.Label label6;
     }
 }
 

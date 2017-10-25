@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp2.BL
+namespace WindowsFormsApp2
 {
     class PodcastController
     {
-        public void createGGardiz()
+        public void createPodcast(String title, String url, String category, int interval)
         {
-            Podcast p = new Podcast("bajs", "kuk", "www.bajs.se", 2);
-            p.url = "drererer";
-            p.interval = 3;
-            
+            Podcast p = new Podcast(title, category, url, interval);
         }
     }
 }

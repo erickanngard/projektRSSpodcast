@@ -40,7 +40,12 @@ namespace WindowsFormsApp2
 
         private void buttonPodcast_Click(object sender, EventArgs e)
         {
-            Podcast p = new Podcast("walllla","hhäässt");
+            String title = new String(Char.ToString(textBoxName.Text));
+            String url = new String(Char.ToString(textBoxUrl.Text);
+            String category = new String(Char.ToString(textBoxCat.Text));
+            int i = new int(numericUpDownFrekvens.Value);
+            PodcastController pc = new PodcastController();
+            pc.createPodcast(title, category, url, i);
             MessageBox.Show(this.textBoxUrl.Text);
         }
     }
