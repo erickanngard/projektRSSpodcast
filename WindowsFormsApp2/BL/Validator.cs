@@ -15,4 +15,15 @@ public class Validator
         return result; // returns bool if its sucessfull sdsd
 
     }
+
+    public bool ValidateEndsWithRSS(String t)
+    {
+        result = false;
+
+        if (t.EndsWith("rss.xml"))
+        {
+            result = true;
+        }
+        return result;
+    }
 }

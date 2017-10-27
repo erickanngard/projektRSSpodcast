@@ -48,6 +48,7 @@
     <Compile Include="BL\PodcastAvsnitt.cs" />
     <Compile Include="BL\PodcastController.cs" />
     <Compile Include="BL\Validator.cs" />
+    <Compile Include="DL\XmlDownloder.cs" />
     <Compile Include="DL\XmlGenerator.cs" />
     <Compile Include="PL\Form1.cs">
       <SubType>Form</SubType>
