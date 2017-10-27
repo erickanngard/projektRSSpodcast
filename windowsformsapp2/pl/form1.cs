@@ -53,7 +53,11 @@ namespace WindowsFormsApp2
 
         private void comboBoxPodcast_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Podcast p = (Podcast)comboBoxPodcast.SelectedValue;
+            textBoxName.Text = p.getTitle();
+            textBoxCat.Text = p.getCategory();
+            textBoxUrl.Text = p.url;
+            numericUpDownFrekvens.Value = p.interval;
         }
     }
 }
