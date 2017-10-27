@@ -15,6 +15,7 @@ namespace WindowsFormsApp2
     {
         public Form1()
         {
+            
             InitializeComponent();
             PodcastController pc = new PodcastController();
             comboBoxPodcast.DataSource = pc.arrayOfPodcast();
@@ -42,10 +43,27 @@ namespace WindowsFormsApp2
 
         private void buttonPodcast_Click(object sender, EventArgs e)
         {
+
             String title = textBoxName.Text;
             String url = textBoxUrl.Text;
             String category = textBoxCat.Text;
             int i = Convert.ToInt32(numericUpDownFrekvens.Value);
+
+            String[] arrayOfText = { title, url, category };
+
+            Validator val = new Validator();
+            foreach(String s in arrayOfText) {
+                if ( val.ValidateTextBoxNotEmpty(s) == false) {
+                    //vet ej än vad som ska göras
+                }
+                else
+                {
+
+                }
+            }
+          
+            
+            
             PodcastController pc = new PodcastController();
             pc.createPodcast(title, category, url, i);
             MessageBox.Show("Sucsess Title="+ title +" Category="+ category +" Url="+ url+" Intervall="+ i );

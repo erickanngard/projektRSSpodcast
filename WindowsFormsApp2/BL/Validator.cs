@@ -26,4 +26,20 @@ public class Validator
         }
         return result;
     }
+    public bool ValidateTextBoxNotEmpty(String t)
+    {
+        result = false;
+
+        if (String.IsNullOrEmpty(t))
+        {
+            result = false;
+        }
+        else {
+            result = true;
+        }
+
+        return result;
+    }
+
+    
 }
