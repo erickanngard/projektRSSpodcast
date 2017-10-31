@@ -48,25 +48,26 @@ namespace WindowsFormsApp2
             String url = textBoxUrl.Text;
             String category = textBoxCat.Text;
             int i = Convert.ToInt32(numericUpDownFrekvens.Value);
-
+            int v = 0;
             String[] arrayOfText = { title, url, category };
+
 
             Validator val = new Validator();
             foreach(String s in arrayOfText) {
-                if ( val.ValidateTextBoxNotEmpty(s) == false) {
-                    //vet ej än vad som ska göras
-                }
-                else
-                {
-
+                if ( val.ValidateTextBoxNotEmpty(s) == true) {
+                    v++;
                 }
             }
-          
-            
-            
-            PodcastController pc = new PodcastController();
-            pc.createPodcast(title, category, url, i);
-            MessageBox.Show("Sucsess Title="+ title +" Category="+ category +" Url="+ url+" Intervall="+ i );
+            if (v == 3)
+            {
+                PodcastController pc = new PodcastController();
+                pc.createPodcast(title, category, url, i);
+                MessageBox.Show("Sucsess Title=" + title + " Category=" + category + " Url=" + url + " Intervall=" + i);
+            }
+            else
+            {
+                MessageBox.Show("Saknar värde i något av fälten.");
+            }
         }
 
         private void comboBoxPodcast_SelectedIndexChanged(object sender, EventArgs e)

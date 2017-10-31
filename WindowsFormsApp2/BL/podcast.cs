@@ -7,8 +7,6 @@ public class Podcast
     public string url { get; set; }
     public int interval { get; set; }
     public Array[] episodes;
-    
-
 
 	public Podcast( String title, String category, String url, int interval)
 	{
