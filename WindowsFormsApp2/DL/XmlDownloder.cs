@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp2.DL
-{
     class XmlDownloader
     {
-        public XmlDownloader(String rssString) {
+        public XmlDownloader() {
             
         }
 
@@ -25,7 +23,10 @@ namespace WindowsFormsApp2.DL
             //Skapa en objektrepresentation.
             var dom = new System.Xml.XmlDocument();
             dom.LoadXml(xml);
-
+        }
+    /*
+        public void LoopXml()
+        {
             //Iterera igenom elementet item.
             foreach (System.Xml.XmlNode item
                in dom.DocumentElement.SelectNodes("channel/item"))
@@ -34,6 +35,5 @@ namespace WindowsFormsApp2.DL
                 var title = item.SelectSingleNode("title");
                 Console.WriteLine(title.InnerText);
             }
-        }
+        }*/
     }
-}

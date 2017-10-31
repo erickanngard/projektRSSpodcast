@@ -15,10 +15,10 @@ namespace WindowsFormsApp2
 
         public Array arrayOfPodcast()
         {
-            Podcast a = new Podcast("monopoly", "ekonomi", "fjasfjaskg.sdf", 3);
-            Podcast b = new Podcast("lol", "humor", "humor.se", 4);
-            Podcast c = new Podcast("rappakalja", "humor", "rapparkalja.se", 1);
-            Podcast d = new Podcast("ekonomy 101", "ekonomi", "ekonomi101.se", 5);
+            Podcast a = new Podcast("Frågar Åt En Kompis", "humor", "https://cdn.radioplay.se/data/rss/479.xml", 3);
+            Podcast b = new Podcast("Knoddpodden", "humor", "https://cdn.radioplay.se/data/rss/477.xml#", 4);
+            Podcast c = new Podcast("UFOpodden", "humor", "https://cdn.radioplay.se/data/rss/462.xml", 1);
+            Podcast d = new Podcast("Freakshow", "humor", "https://cdn.radioplay.se/data/rss/457.xml", 5);
 
             Podcast[] arrayOfPodcast = { a, b, c, d};
 
