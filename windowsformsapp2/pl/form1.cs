@@ -75,7 +75,7 @@ namespace WindowsFormsApp2
             refreshData();
         }
 
-        private void comboBoxPodcast_SelectedIndexChanged(object sender, EventArgs e)
+        private async void comboBoxPodcast_SelectedIndexChanged(object sender, EventArgs e)
         {
             
             Podcast p = (Podcast)comboBoxPodcast.SelectedValue;
@@ -83,11 +83,47 @@ namespace WindowsFormsApp2
             textBoxCat.Text = p.category;
             textBoxUrl.Text = p.url;
             numericUpDownFrekvens.Value = p.interval;
+
+            refreshEpisodeList(await pc.downloadXml(p.url));
         }
 
         private void refreshData()
         {
+            comboBoxPodcast.DisplayMember = "title";
             comboBoxPodcast.DataSource = pc.LoadLocalPodcasts();
+            
+        }
+
+        private void refreshEpisodeList(List<Episode> list)
+        {
+            episodeListBox.DisplayMember = "title";
+            
+            episodeListBox.DataSource = list;
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void episodeListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Episode ep = (Episode)episodeListBox.SelectedValue;
+            episodDesc.Text = ep.description;
+            episodeLabel.Text = ep.title;
+           
+        }
+
+        private void episodeListBox_DoubleClick(object sender, EventArgs e)
+        {
+            Episode ep = (Episode)episodeListBox.SelectedValue;
+
+            axWindowsMediaPlayer1.URL = ep.link;
         }
     }
 }
