@@ -8,17 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp2;
+using WindowsFormsApp2.BL;
 
 namespace WindowsFormsApp2
 {
     public partial class Form1 : Form
     {
+        private PodcastController pc = null;
+        
         public Form1()
         {
             
             InitializeComponent();
-            PodcastController pc = new PodcastController();
-            comboBoxPodcast.DataSource = pc.arrayOfPodcast();
+            pc = new PodcastController();
+            refreshData();
+            //comboBoxPodcast.DataSource = pc.arrayOfPodcast();
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -60,23 +64,30 @@ namespace WindowsFormsApp2
             }
             if (v == 3)
             {
-                PodcastController pc = new PodcastController();
-                pc.createPodcast(title, category, url, i);
+                pc.createPodcast(title, url ,category, i);
                 MessageBox.Show("Sucsess Title=" + title + " Category=" + category + " Url=" + url + " Intervall=" + i);
             }
             else
             {
                 MessageBox.Show("Saknar värde i något av fälten.");
             }
+
+            refreshData();
         }
 
         private void comboBoxPodcast_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             Podcast p = (Podcast)comboBoxPodcast.SelectedValue;
-            textBoxName.Text = p.getTitle();
-            textBoxCat.Text = p.getCategory();
+            textBoxName.Text = p.title;
+            textBoxCat.Text = p.category;
             textBoxUrl.Text = p.url;
             numericUpDownFrekvens.Value = p.interval;
+        }
+
+        private void refreshData()
+        {
+            comboBoxPodcast.DataSource = pc.LoadLocalPodcasts();
         }
     }
 }
