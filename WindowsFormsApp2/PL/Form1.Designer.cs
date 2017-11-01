@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBoxUrl = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
@@ -35,28 +36,33 @@
             this.numericUpDownFrekvens = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxPodcast = new System.Windows.Forms.ComboBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.episodeListBox = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonPodcast = new System.Windows.Forms.Button();
             this.textBoxCat = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.episodeLabel = new System.Windows.Forms.Label();
+            this.episodDesc = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFrekvens)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxUrl
             // 
-            this.textBoxUrl.Location = new System.Drawing.Point(11, 66);
+            this.textBoxUrl.Location = new System.Drawing.Point(11, 24);
             this.textBoxUrl.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxUrl.Name = "textBoxUrl";
-            this.textBoxUrl.Size = new System.Drawing.Size(441, 20);
+            this.textBoxUrl.Size = new System.Drawing.Size(198, 20);
             this.textBoxUrl.TabIndex = 0;
             this.textBoxUrl.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 46);
+            this.label1.Location = new System.Drawing.Point(11, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(23, 13);
@@ -65,16 +71,16 @@
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(11, 115);
+            this.textBoxName.Location = new System.Drawing.Point(11, 61);
             this.textBoxName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(191, 20);
+            this.textBoxName.Size = new System.Drawing.Size(198, 20);
             this.textBoxName.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 99);
+            this.label2.Location = new System.Drawing.Point(11, 46);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
@@ -83,7 +89,7 @@
             // 
             // numericUpDownFrekvens
             // 
-            this.numericUpDownFrekvens.Location = new System.Drawing.Point(11, 169);
+            this.numericUpDownFrekvens.Location = new System.Drawing.Point(11, 142);
             this.numericUpDownFrekvens.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDownFrekvens.Maximum = new decimal(new int[] {
             7,
@@ -108,12 +114,13 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 150);
+            this.label3.Location = new System.Drawing.Point(11, 123);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(225, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Uppdateringsintervall (antal gånger per vecka)";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // comboBoxPodcast
             // 
@@ -124,33 +131,36 @@
             "sadf",
             "saf",
             "dfdf"});
-            this.comboBoxPodcast.Location = new System.Drawing.Point(510, 66);
+            this.comboBoxPodcast.Location = new System.Drawing.Point(347, 38);
             this.comboBoxPodcast.Name = "comboBoxPodcast";
-            this.comboBoxPodcast.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxPodcast.Size = new System.Drawing.Size(284, 21);
             this.comboBoxPodcast.TabIndex = 6;
             this.comboBoxPodcast.SelectedIndexChanged += new System.EventHandler(this.comboBoxPodcast_SelectedIndexChanged);
             // 
-            // listBox1
+            // episodeListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(510, 115);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(121, 225);
-            this.listBox1.TabIndex = 7;
+            this.episodeListBox.FormattingEnabled = true;
+            this.episodeListBox.Location = new System.Drawing.Point(347, 83);
+            this.episodeListBox.Name = "episodeListBox";
+            this.episodeListBox.Size = new System.Drawing.Size(284, 134);
+            this.episodeListBox.TabIndex = 7;
+            this.episodeListBox.SelectedIndexChanged += new System.EventHandler(this.episodeListBox_SelectedIndexChanged);
+            this.episodeListBox.DoubleClick += new System.EventHandler(this.episodeListBox_DoubleClick);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(507, 46);
+            this.label4.Location = new System.Drawing.Point(344, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.Size = new System.Drawing.Size(77, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Podcast";
+            this.label4.Text = "Mina Podcasts";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(507, 99);
+            this.label5.Location = new System.Drawing.Point(344, 67);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
             this.label5.TabIndex = 9;
@@ -159,7 +169,7 @@
             // 
             // buttonPodcast
             // 
-            this.buttonPodcast.Location = new System.Drawing.Point(377, 162);
+            this.buttonPodcast.Location = new System.Drawing.Point(11, 167);
             this.buttonPodcast.Name = "buttonPodcast";
             this.buttonPodcast.Size = new System.Drawing.Size(75, 23);
             this.buttonPodcast.TabIndex = 10;
@@ -169,33 +179,74 @@
             // 
             // textBoxCat
             // 
-            this.textBoxCat.Location = new System.Drawing.Point(261, 115);
+            this.textBoxCat.Location = new System.Drawing.Point(11, 99);
             this.textBoxCat.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCat.Name = "textBoxCat";
-            this.textBoxCat.Size = new System.Drawing.Size(191, 20);
+            this.textBoxCat.Size = new System.Drawing.Size(198, 20);
             this.textBoxCat.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(258, 99);
+            this.label6.Location = new System.Drawing.Point(11, 83);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 12;
             this.label6.Text = "Category";
             // 
+            // episodeLabel
+            // 
+            this.episodeLabel.AutoSize = true;
+            this.episodeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.episodeLabel.Location = new System.Drawing.Point(346, 220);
+            this.episodeLabel.Name = "episodeLabel";
+            this.episodeLabel.Size = new System.Drawing.Size(117, 24);
+            this.episodeLabel.TabIndex = 13;
+            this.episodeLabel.Text = "Avsnitt Titel";
+            // 
+            // episodDesc
+            // 
+            this.episodDesc.AutoSize = true;
+            this.episodDesc.Location = new System.Drawing.Point(347, 248);
+            this.episodDesc.Name = "episodDesc";
+            this.episodDesc.Size = new System.Drawing.Size(60, 13);
+            this.episodDesc.TabIndex = 14;
+            this.episodDesc.Text = "Description";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(134, 167);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Ändra";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(347, 369);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(284, 44);
+            this.axWindowsMediaPlayer1.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(662, 425);
+            this.Controls.Add(this.axWindowsMediaPlayer1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.episodDesc);
+            this.Controls.Add(this.episodeLabel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBoxCat);
             this.Controls.Add(this.buttonPodcast);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.episodeListBox);
             this.Controls.Add(this.comboBoxPodcast);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.numericUpDownFrekvens);
@@ -208,6 +259,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFrekvens)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,12 +274,16 @@
         private System.Windows.Forms.NumericUpDown numericUpDownFrekvens;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxPodcast;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox episodeListBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonPodcast;
         private System.Windows.Forms.TextBox textBoxCat;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label episodeLabel;
+        private System.Windows.Forms.Label episodDesc;
+        private System.Windows.Forms.Button button1;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }
 }
 

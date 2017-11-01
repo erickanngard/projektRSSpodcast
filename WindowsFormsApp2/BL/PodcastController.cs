@@ -40,6 +40,7 @@ namespace WindowsFormsApp2.BL
             return localPodcasts;
         }
 
+        internal async Task<List<Episode>> downloadXml(string url) => await XmlDownloader.LoadRssXml(url);
     }
 }
  
