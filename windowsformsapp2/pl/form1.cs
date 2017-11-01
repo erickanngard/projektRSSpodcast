@@ -125,5 +125,41 @@ namespace WindowsFormsApp2
 
             axWindowsMediaPlayer1.URL = ep.link;
         }
+
+        private void EditPodcast_Click(object sender, EventArgs e)
+        {
+            //får inte den att funka...
+            /*
+            String title = textBoxName.Text;
+            String url = textBoxUrl.Text;
+            String category = textBoxCat.Text;
+            int i = Convert.ToInt32(numericUpDownFrekvens.Value);
+            int v = 0;
+            String[] arrayOfText = { title, url, category };
+            Podcast p = (Podcast)comboBoxPodcast.SelectedValue;
+
+            XmlGenerator xmlG = new XmlGenerator();
+
+            Validator val = new Validator();
+            foreach (String s in arrayOfText)
+            {
+                if (val.ValidateTextBoxNotEmpty(s) == true)
+                {
+                    v++;
+                }
+            }
+            if (v == 3)
+            {
+                xmlG.EditValuePodcast( p, title);
+                MessageBox.Show("Sucsess Title=" + title + " Category=" + category + " Url=" + url + " Intervall=" + i);
+            }
+            else
+            {
+                MessageBox.Show("Saknar värde i något av fälten.");
+            }
+
+            refreshData();*/
+
+        }
     }
 }
