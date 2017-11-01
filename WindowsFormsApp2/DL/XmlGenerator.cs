@@ -8,11 +8,11 @@ using System.Collections.Generic;
 
 public class XmlGenerator
 {
-    
+
     public static bool SavePodcast(Podcast p)
     {
         XmlDocument xmlDom = new XmlDocument();
-        
+
         String rootDir = "XML_Data";
         String xmlfile = "xmldata";
         String path = rootDir + "/" + xmlfile + ".xml";
@@ -23,8 +23,8 @@ public class XmlGenerator
             Directory.CreateDirectory(rootDir);
         }
 
-        
-        
+
+
         if (!File.Exists(path))
         {
             // Skapa och lägg till
@@ -32,7 +32,7 @@ public class XmlGenerator
             XmlElement rootNode = xmlDom.CreateElement("root");
             XmlElement items = xmlDom.CreateElement("items");
             XmlDocument newPod = new XmlDocument();
-            
+
             newPod.LoadXml(fileContent);
             XmlNode node = newPod.DocumentElement;
 
@@ -41,7 +41,7 @@ public class XmlGenerator
             items.AppendChild(importNode);
             rootNode.AppendChild(items);
             xmlDom.AppendChild(rootNode);
-            
+
 
         }
         else
@@ -57,7 +57,7 @@ public class XmlGenerator
 
             XmlNode importNode = items.OwnerDocument.ImportNode(node, true);
             items.AppendChild(importNode);
-        
+
         }
 
         xmlDom.Save(path);
@@ -111,6 +111,54 @@ public class XmlGenerator
         }
 
         return listOfLocalPods;
+    }
+
+    public void EditValuePodcast(Podcast p, String newTitle)//String newCategroy, String newUrl
+    {// får inte den att funka 
+        /*
+        String rootDir = "XML_Data";
+        String xmlfile = "xmldata";
+        String path = rootDir + "/" + xmlfile + ".xml";
+
+        if (!File.Exists(path))
+        {
+            new List<Podcast>();// return innan
+        }
+
+        XmlDocument xmlDom = new XmlDocument();
+        xmlDom.Load(path);
+
+
+        List<Podcast> listOfPodcast = loadLocalFiles();
+
+        foreach( Podcast pod in listOfPodcast)
+        {
+            foreach (XmlNode n in xmlDom.DocumentElement.SelectNodes("items/Podcast"))
+            {
+                if (pod.title == p.title && pod.title == n.SelectSingleNode("title").InnerText)
+                {
+                    n.SelectSingleNode("tile").InnerText = newTitle;
+                }
+                /*if (pod.category == p.category)
+                {
+                    XmlNode node = xmlDom.SelectSingleNode("/items/Podcast[category= ' " + p.category + " ']");
+                    node.Attributes["category"].Value = newCategroy;
+                }
+                if (pod.url == p.url)
+                {
+                    XmlNode node = xmlDom.SelectSingleNode("/items/Podcast[url= ' " + p.url + " ']");
+                    node.Attributes["url"].Value = newUrl;
+                }*/
+                /*if(pod.interval == p.interval)
+                {
+                    //XmlNode node = xmlDom.SelectSingleNode("root/items/Podcast[interval= " + p.interval + " ]");
+                    //node.Attributes[0].Value = newInterval;
+                }
+            }
+        }
+        xmlDom.Save(path);
+    */
+
     }
 }
 

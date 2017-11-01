@@ -223,6 +223,7 @@
             this.EditPodcast.TabIndex = 15;
             this.EditPodcast.Text = "Ändra";
             this.EditPodcast.UseVisualStyleBackColor = true;
+            this.EditPodcast.Click += new System.EventHandler(this.EditPodcast_Click);
             // 
             // axWindowsMediaPlayer1
             // 
