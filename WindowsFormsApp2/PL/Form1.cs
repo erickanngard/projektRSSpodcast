@@ -129,13 +129,13 @@ namespace WindowsFormsApp2
         private void EditPodcast_Click(object sender, EventArgs e)
         {
             //får inte den att funka...
-            /*
+            
             String title = textBoxName.Text;
             String url = textBoxUrl.Text;
             String category = textBoxCat.Text;
             int i = Convert.ToInt32(numericUpDownFrekvens.Value);
             int v = 0;
-            String[] arrayOfText = { title, url, category };
+            String[] arrayOfText = { title, url, category};
             Podcast p = (Podcast)comboBoxPodcast.SelectedValue;
 
             XmlGenerator xmlG = new XmlGenerator();
@@ -150,7 +150,7 @@ namespace WindowsFormsApp2
             }
             if (v == 3)
             {
-                xmlG.EditValuePodcast( p, title);
+                xmlG.EditValuePodcast(p, title, category, url);
                 MessageBox.Show("Sucsess Title=" + title + " Category=" + category + " Url=" + url + " Intervall=" + i);
             }
             else
@@ -158,7 +158,7 @@ namespace WindowsFormsApp2
                 MessageBox.Show("Saknar värde i något av fälten.");
             }
 
-            refreshData();*/
+            refreshData();
 
         }
     }

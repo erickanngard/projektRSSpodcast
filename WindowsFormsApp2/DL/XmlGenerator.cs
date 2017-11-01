@@ -113,9 +113,9 @@ public class XmlGenerator
         return listOfLocalPods;
     }
 
-    public void EditValuePodcast(Podcast p, String newTitle)//String newCategroy, String newUrl
+    public void EditValuePodcast(Podcast p, String newTitle, String newCategroy, String newUrl)
     {// får inte den att funka 
-        /*
+        
         String rootDir = "XML_Data";
         String xmlfile = "xmldata";
         String path = rootDir + "/" + xmlfile + ".xml";
@@ -137,27 +137,25 @@ public class XmlGenerator
             {
                 if (pod.title == p.title && pod.title == n.SelectSingleNode("title").InnerText)
                 {
-                    n.SelectSingleNode("tile").InnerText = newTitle;
+                    n.SelectSingleNode("title").InnerText = newTitle;
                 }
-                /*if (pod.category == p.category)
+                if (pod.category == p.category && pod.category == n.SelectSingleNode("category").InnerText)
                 {
-                    XmlNode node = xmlDom.SelectSingleNode("/items/Podcast[category= ' " + p.category + " ']");
-                    node.Attributes["category"].Value = newCategroy;
+                    n.SelectSingleNode("category").InnerText = newCategroy;
                 }
-                if (pod.url == p.url)
+                if (pod.url == p.url && pod.url == n.SelectSingleNode("url").InnerText)
                 {
-                    XmlNode node = xmlDom.SelectSingleNode("/items/Podcast[url= ' " + p.url + " ']");
-                    node.Attributes["url"].Value = newUrl;
-                }*/
-                /*if(pod.interval == p.interval)
-                {
+                    n.SelectSingleNode("url").InnerText = newUrl;
+                }
+                //if(pod.interval == p.interval)
+                //{
                     //XmlNode node = xmlDom.SelectSingleNode("root/items/Podcast[interval= " + p.interval + " ]");
                     //node.Attributes[0].Value = newInterval;
-                }
+                //}
             }
         }
         xmlDom.Save(path);
-    */
+    
 
     }
 }
