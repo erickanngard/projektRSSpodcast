@@ -3,28 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsFormsApp2.DL;
 
-namespace WindowsFormsApp2
+namespace WindowsFormsApp2.BL
 {
     class PodcastController
     {
-        public void createPodcast(String title, String url, String category, int interval)
+        
+        public PodcastController()
         {
-            Podcast p = new Podcast(title, category, url, interval);
+            // Fråga data-layer om befintlig data.
+        }
+        public bool createPodcast(String title, String url, String category, int interval)
+        {
+            Podcast p = new Podcast(title, category, url, interval, new List<Episode>());
+            XmlGenerator.SavePodcast(p);
+            return false;
         }
 
-        public Array arrayOfPodcast()
+        private Podcast[] arrayOfPodcast()
         {
-            Podcast a = new Podcast("Frågar Åt En Kompis", "humor", "https://cdn.radioplay.se/data/rss/479.xml", 3);
-            Podcast b = new Podcast("Knoddpodden", "humor", "https://cdn.radioplay.se/data/rss/477.xml#", 4);
-            Podcast c = new Podcast("UFOpodden", "humor", "https://cdn.radioplay.se/data/rss/462.xml", 1);
-            Podcast d = new Podcast("Freakshow", "humor", "https://cdn.radioplay.se/data/rss/457.xml", 5);
+            Podcast a = new Podcast("Frågar Åt En Kompis", "humor", "https://cdn.radioplay.se/data/rss/479.xml", 3, new List<Episode>());
+            Podcast b = new Podcast("Knoddpodden", "humor", "https://cdn.radioplay.se/data/rss/477.xml#", 4, new List<Episode>());
+            Podcast c = new Podcast("UFOpodden", "humor", "https://cdn.radioplay.se/data/rss/462.xml", 1, new List<Episode>());
+            Podcast d = new Podcast("Freakshow", "humor", "https://cdn.radioplay.se/data/rss/457.xml", 5, new List<Episode>());
 
             Podcast[] arrayOfPodcast = { a, b, c, d};
-
             return arrayOfPodcast;
-
         }
+
+        // Om det finns, retunera
+        public List<Podcast> LoadLocalPodcasts()
+        {
+            List<Podcast> localPodcasts = XmlGenerator.loadLocalFiles();
+            //List<Podcast> localPodcasts = arrayOfPodcast().ToList(); // Denna del bör hämta från lokala XML-filer.
+            return localPodcasts;
+        }
+
     }
 }
  

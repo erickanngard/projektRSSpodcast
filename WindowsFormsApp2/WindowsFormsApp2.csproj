@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\PodcastAvsnitt.cs" />
+    <Compile Include="BL\Episode.cs" />
     <Compile Include="BL\PodcastController.cs" />
     <Compile Include="BL\Validator.cs" />
     <Compile Include="DL\XmlDownloder.cs" />
@@ -56,7 +56,7 @@
     <Compile Include="PL\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="BL\podcast.cs" />
+    <Compile Include="BL\Podcast.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PL\Form1.resx">

@@ -1,51 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 
-public class Podcast
+namespace WindowsFormsApp2.BL
 {
-    private string title;
-    private string category;
-    public string url { get; set; }
-    public int interval { get; set; }
-    public Array[] episodes;
-    private XmlDownloader x;
+    public class Podcast
+    {
+        public string title { get; set; }
+        public string category { get; set; }
+        public string url { get; set; }
+        public int interval { get; set; }
 
-	public Podcast( String title, String category, String url, int interval)
-	{
-        this.title = title;
-        this.category = category;
-        this.url = url;
-        this.interval = interval;
-        DownloadXml(url);
-    }
+        private List<Episode> episodes;
 
-    public void SetTitel(String title)
-    {
-        this.title = title;
-    }
-    public void SetCategory(String category)
-    {
-        this.category = category;
-    }
-    public String getTitle()
-    {
-        return this.title;
-    }
-    public String getCategory()
-    {
-        return this.category;
-    }
-
-    private void DownloadXml(String url)
-    {
-        try
-        {
-            x.DownloadRssXml(url);
-        }
-        catch ( Exception e)
-        {
-            Console.WriteLine("Exeption: "+e);
+        public Podcast() {
         }
         
+        public Podcast(string title, string category, string url, int interval, List<Episode> episodes)
+        {
+            this.title = title;
+            this.category = category;
+            this.url = url;
+            this.interval = interval;
+            this.episodes = episodes;
+        }
     }
-    
 }
