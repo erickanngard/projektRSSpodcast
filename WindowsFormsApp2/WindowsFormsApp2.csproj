@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Category.cs" />
     <Compile Include="BL\Episode.cs" />
     <Compile Include="BL\PodcastController.cs" />
     <Compile Include="BL\Validator.cs" />

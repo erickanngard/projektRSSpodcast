@@ -40,8 +40,20 @@ namespace WindowsFormsApp2.BL
             return localPodcasts;
         }
 
-        
+        public List<string> LoadCategory()
+        {
+            List<Podcast> podList = LoadLocalPodcasts();
+            List<String> ls = new List<string>();
 
+            foreach (Podcast p in podList)
+            {
+                if( !ls.Contains(p.category))
+                {
+                    ls.Add(p.category);
+                }
+            }
+            return ls;
+        }
         internal async Task<List<Episode>> downloadXml(string url) => await XmlDownloader.LoadRssXml(url);
     }
 }

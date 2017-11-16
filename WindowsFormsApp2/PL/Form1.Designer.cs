@@ -47,6 +47,9 @@
             this.EditPodcast = new System.Windows.Forms.Button();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.deletePodcast = new System.Windows.Forms.Button();
+            this.cBCat = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.listBoxPodcastCat = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFrekvens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -243,11 +246,41 @@
             this.deletePodcast.Text = "Ta bort";
             this.deletePodcast.UseVisualStyleBackColor = true;
             // 
+            // cBCat
+            // 
+            this.cBCat.FormattingEnabled = true;
+            this.cBCat.Location = new System.Drawing.Point(11, 244);
+            this.cBCat.Name = "cBCat";
+            this.cBCat.Size = new System.Drawing.Size(198, 21);
+            this.cBCat.TabIndex = 18;
+            this.cBCat.SelectedIndexChanged += new System.EventHandler(this.cBCat_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 228);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(130, 13);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Visa podcast från categroi";
+            // 
+            // listBoxPodcastCat
+            // 
+            this.listBoxPodcastCat.FormattingEnabled = true;
+            this.listBoxPodcastCat.Location = new System.Drawing.Point(11, 272);
+            this.listBoxPodcastCat.Name = "listBoxPodcastCat";
+            this.listBoxPodcastCat.Size = new System.Drawing.Size(198, 134);
+            this.listBoxPodcastCat.TabIndex = 20;
+            this.listBoxPodcastCat.SelectedIndexChanged += new System.EventHandler(this.listBoxPodcastCat_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(662, 425);
+            this.Controls.Add(this.listBoxPodcastCat);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cBCat);
             this.Controls.Add(this.deletePodcast);
             this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.EditPodcast);
@@ -297,6 +330,9 @@
         private System.Windows.Forms.Button EditPodcast;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.Button deletePodcast;
+        private System.Windows.Forms.ComboBox cBCat;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ListBox listBoxPodcastCat;
     }
 }
 

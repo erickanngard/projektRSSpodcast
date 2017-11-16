@@ -84,20 +84,20 @@ namespace WindowsFormsApp2
             textBoxUrl.Text = p.url;
             numericUpDownFrekvens.Value = p.interval;
 
-            refreshEpisodeList(await pc.downloadXml(p.url));
+           // refreshEpisodeList(await pc.downloadXml(p.url));
         }
 
         private void refreshData()
         {
             comboBoxPodcast.DisplayMember = "title";
             comboBoxPodcast.DataSource = pc.LoadLocalPodcasts();
+            cBCat.DataSource = pc.LoadCategory();
             
         }
 
         private void refreshEpisodeList(List<Episode> list)
         {
             episodeListBox.DisplayMember = "title";
-            
             episodeListBox.DataSource = list;
         }
 
@@ -160,6 +160,37 @@ namespace WindowsFormsApp2
 
             refreshData();
 
+        }
+
+        private void listBoxPodcastCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           /* String s = (String)listBoxPodcastCat.SelectedValue;
+            List<Podcast> pl = pc.LoadLocalPodcasts();
+
+            foreach ( Podcast p in pl)
+            {
+                if ( p.category == s)
+                {
+
+                }
+            }*/
+        }
+
+        private void cBCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            String s = (String)cBCat.SelectedValue;
+            List<Podcast> pl = pc.LoadLocalPodcasts();
+            List<Podcast> catL = new List<Podcast>();
+            
+            foreach (Podcast p in pl)
+            {
+                if (p.category == s)
+                {
+                    catL.Add(p);
+                }
+            }
+            listBoxPodcastCat.DisplayMember = "title";
+            listBoxPodcastCat.DataSource = catL;
         }
     }
 }
