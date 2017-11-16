@@ -84,7 +84,7 @@ namespace WindowsFormsApp2
             textBoxUrl.Text = p.url;
             numericUpDownFrekvens.Value = p.interval;
 
-           // refreshEpisodeList(await pc.downloadXml(p.url));
+            refreshEpisodeList(await pc.downloadXml(p.url));
         }
 
         private void refreshData()
@@ -122,8 +122,8 @@ namespace WindowsFormsApp2
         private void episodeListBox_DoubleClick(object sender, EventArgs e)
         {
             Episode ep = (Episode)episodeListBox.SelectedValue;
-
             axWindowsMediaPlayer1.URL = ep.link;
+            ep.isRead = true;
         }
 
         private void EditPodcast_Click(object sender, EventArgs e)
@@ -162,18 +162,10 @@ namespace WindowsFormsApp2
 
         }
 
-        private void listBoxPodcastCat_SelectedIndexChanged(object sender, EventArgs e)
+        private async void listBoxPodcastCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-           /* String s = (String)listBoxPodcastCat.SelectedValue;
-            List<Podcast> pl = pc.LoadLocalPodcasts();
-
-            foreach ( Podcast p in pl)
-            {
-                if ( p.category == s)
-                {
-
-                }
-            }*/
+            Podcast p = (Podcast)listBoxPodcastCat.SelectedValue;
+            refreshEpisodeList(await pc.downloadXml(p.url));
         }
 
         private void cBCat_SelectedIndexChanged(object sender, EventArgs e)

@@ -43,7 +43,7 @@ namespace WindowsFormsApp2.BL
         public List<string> LoadCategory()
         {
             List<Podcast> podList = LoadLocalPodcasts();
-            List<String> ls = new List<string>();
+            List<string> ls = new List<string>();
 
             foreach (Podcast p in podList)
             {
