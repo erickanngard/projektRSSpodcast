@@ -245,6 +245,7 @@
             this.deletePodcast.TabIndex = 17;
             this.deletePodcast.Text = "Ta bort";
             this.deletePodcast.UseVisualStyleBackColor = true;
+            this.deletePodcast.Click += new System.EventHandler(this.deletePodcast_Click);
             // 
             // cBCat
             // 
