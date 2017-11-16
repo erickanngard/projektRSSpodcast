@@ -84,20 +84,20 @@ namespace WindowsFormsApp2
             textBoxUrl.Text = p.url;
             numericUpDownFrekvens.Value = p.interval;
 
-            refreshEpisodeList(await pc.downloadXml(p.url));
+           // refreshEpisodeList(await pc.downloadXml(p.url));
         }
 
         private void refreshData()
         {
             comboBoxPodcast.DisplayMember = "title";
             comboBoxPodcast.DataSource = pc.LoadLocalPodcasts();
+            cBCat.DataSource = pc.LoadCategory();
             
         }
 
         private void refreshEpisodeList(List<Episode> list)
         {
             episodeListBox.DisplayMember = "title";
-            
             episodeListBox.DataSource = list;
         }
 
@@ -129,13 +129,13 @@ namespace WindowsFormsApp2
         private void EditPodcast_Click(object sender, EventArgs e)
         {
             //får inte den att funka...
-            /*
+            
             String title = textBoxName.Text;
             String url = textBoxUrl.Text;
             String category = textBoxCat.Text;
             int i = Convert.ToInt32(numericUpDownFrekvens.Value);
             int v = 0;
-            String[] arrayOfText = { title, url, category };
+            String[] arrayOfText = { title, url, category};
             Podcast p = (Podcast)comboBoxPodcast.SelectedValue;
 
             XmlGenerator xmlG = new XmlGenerator();
@@ -150,7 +150,7 @@ namespace WindowsFormsApp2
             }
             if (v == 3)
             {
-                xmlG.EditValuePodcast( p, title);
+                xmlG.EditValuePodcast(p, title, category, url);
                 MessageBox.Show("Sucsess Title=" + title + " Category=" + category + " Url=" + url + " Intervall=" + i);
             }
             else
@@ -158,8 +158,39 @@ namespace WindowsFormsApp2
                 MessageBox.Show("Saknar värde i något av fälten.");
             }
 
-            refreshData();*/
+            refreshData();
 
+        }
+
+        private void listBoxPodcastCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           /* String s = (String)listBoxPodcastCat.SelectedValue;
+            List<Podcast> pl = pc.LoadLocalPodcasts();
+
+            foreach ( Podcast p in pl)
+            {
+                if ( p.category == s)
+                {
+
+                }
+            }*/
+        }
+
+        private void cBCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            String s = (String)cBCat.SelectedValue;
+            List<Podcast> pl = pc.LoadLocalPodcasts();
+            List<Podcast> catL = new List<Podcast>();
+            
+            foreach (Podcast p in pl)
+            {
+                if (p.category == s)
+                {
+                    catL.Add(p);
+                }
+            }
+            listBoxPodcastCat.DisplayMember = "title";
+            listBoxPodcastCat.DataSource = catL;
         }
     }
 }
