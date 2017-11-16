@@ -184,5 +184,12 @@ namespace WindowsFormsApp2
             listBoxPodcastCat.DisplayMember = "title";
             listBoxPodcastCat.DataSource = catL;
         }
+
+        private void deletePodcast_Click(object sender, EventArgs e)
+        {
+            Podcast p = (Podcast)comboBoxPodcast.SelectedValue;
+
+
+        }
     }
 }
