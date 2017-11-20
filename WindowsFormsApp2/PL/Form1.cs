@@ -22,7 +22,9 @@ namespace WindowsFormsApp2
             InitializeComponent();
             pc = new PodcastController();
             refreshData();
+            episodeListBox.MultiColumn = false;
             //comboBoxPodcast.DataSource = pc.arrayOfPodcast();
+
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -188,6 +190,7 @@ namespace WindowsFormsApp2
         private void deletePodcast_Click(object sender, EventArgs e)
         {
             Podcast p = (Podcast)comboBoxPodcast.SelectedValue;
+
 
 
         }

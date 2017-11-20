@@ -54,6 +54,7 @@ namespace WindowsFormsApp2.BL
             }
             return ls;
         }
+
         internal async Task<List<Episode>> downloadXml(string url) => await XmlDownloader.LoadRssXml(url);
     }
 }

@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
+
+
+namespace WindowsFormsApp2.BL
+{ 
 public class Validator
 {
 
@@ -30,4 +35,19 @@ public class Validator
     {
         return !String.IsNullOrEmpty(t);
     }
+
+    static public int gerneratePodcastID()
+    {
+            PodcastController pc = new PodcastController();
+            List<Podcast> pl = pc.LoadLocalPodcasts();
+            int i = 0;
+            if (pl.Count > 0)
+            {
+                Podcast p = pl[pl.Count - 1];  
+                i = p.id + 1;
+            }
+         
+            return i;
+    }
+}
 }

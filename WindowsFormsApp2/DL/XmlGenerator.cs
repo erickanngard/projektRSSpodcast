@@ -5,6 +5,7 @@ using WindowsFormsApp2.BL;
 using System.IO;
 using System.Xml.Serialization;
 using System.Collections.Generic;
+using System.Xml.XPath;
 
 public class XmlGenerator
 {
@@ -86,7 +87,7 @@ public class XmlGenerator
     {
         String rootDir = "XML_Data";
         String xmlfile = "xmldata";
-        String path = rootDir + "/" + xmlfile + ".xml";
+        String path = rootDir + "/" + xmlfile + ".xml";//
 
         if (!File.Exists(path))
         {
@@ -94,7 +95,13 @@ public class XmlGenerator
         }
 
         XmlDocument xmlDom = new XmlDocument();
-        xmlDom.Load(path);
+        try {
+            xmlDom.Load(path);
+        }
+        catch (StackOverflowException e)
+        {
+            Console.WriteLine(e);
+        }
 
         List<Podcast> listOfLocalPods = new List<Podcast>();
 
@@ -103,14 +110,44 @@ public class XmlGenerator
             var title = n.SelectSingleNode("title").InnerText;
             var cat = n.SelectSingleNode("category").InnerText;
             var url = n.SelectSingleNode("url").InnerText;
+            var id = n.SelectSingleNode("id").InnerText;
             int interval;
             Int32.TryParse(n.SelectSingleNode("interval").InnerText, out interval);
-
-
             listOfLocalPods.Add(new Podcast(title, cat, url, interval, new List<Episode>()));
         }
 
         return listOfLocalPods;
+    }
+
+    public void DeleteCategory(Podcast p)
+    {
+        String rootDir = "XML_Data";
+        String xmlfile = "xmldata";
+        String path = rootDir + "/" + xmlfile + ".xml";
+
+        if (!File.Exists(path))
+        {
+            new List<Podcast>();// return innan
+        }
+
+        XmlDocument xmlDom = new XmlDocument();
+        xmlDom.Load(path);
+        XmlNodeList xmlNodes = xmlDom.SelectNodes("items/Podcast");
+
+        List<Podcast> listOfPodcast = loadLocalFiles();
+        
+        foreach ( Podcast pod in listOfPodcast)
+        {
+            //if ( pod == p && pod.title == ) {
+              //  xmlNodes.
+            //}
+        }
+
+    }
+
+    public void deletePodcast()
+    {
+
     }
 
     public void EditValuePodcast(Podcast p, String newTitle, String newCategroy, String newUrl)
@@ -127,25 +164,35 @@ public class XmlGenerator
 
         XmlDocument xmlDom = new XmlDocument();
         xmlDom.Load(path);
+       // XPathNavigator xmlNav = xmlDom.CreateNavigator();
 
-
+       // XmlNamespaceManager xmlManager = new XmlNamespaceManager(xmlNav.NameTable);
+        
         List<Podcast> listOfPodcast = loadLocalFiles();
 
         foreach( Podcast pod in listOfPodcast)
         {
-            foreach (XmlNode n in xmlDom.DocumentElement.SelectNodes("items/Podcast"))
+            foreach (XmlNode n in xmlDom.DocumentElement.SelectNodes("/items/Podcast"))
             {
-                if (pod.title == p.title && pod.title == n.SelectSingleNode("title").InnerText)
+                if ( pod.id == p.id )
                 {
+                    n.Attributes["title"].Value = newTitle;
                     n.SelectSingleNode("title").InnerText = newTitle;
-                }
-                if (pod.category == p.category && pod.category == n.SelectSingleNode("category").InnerText)
-                {
                     n.SelectSingleNode("category").InnerText = newCategroy;
-                }
-                if (pod.url == p.url && pod.url == n.SelectSingleNode("url").InnerText)
-                {
                     n.SelectSingleNode("url").InnerText = newUrl;
+
+                    /*if (pod.title == p.title && pod.title == n.SelectSingleNode("title").InnerText)
+                    {
+                       
+                    }
+                    if (pod.category == p.category && pod.category == n.SelectSingleNode("category").InnerText)
+                    {
+                         // den sätter den nya cat på alla som har den cat
+                    }
+                    if (pod.url == p.url && pod.url == n.SelectSingleNode("url").InnerText)
+                    {
+                        
+                    }*/
                 }
                 //if(pod.interval == p.interval)
                 //{
