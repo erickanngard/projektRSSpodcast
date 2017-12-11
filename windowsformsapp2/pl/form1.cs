@@ -14,6 +14,8 @@ namespace WindowsFormsApp2
 {
     public partial class Form1 : Form
     {
+        int counter = new int();
+
         private PodcastController pc = null;
         
         public Form1()
@@ -23,6 +25,8 @@ namespace WindowsFormsApp2
             pc = new PodcastController();
             refreshData();
             episodeListBox.MultiColumn = false;
+            timerIntervall.Interval = 5000;
+            countDown.Interval = 1000;
             //comboBoxPodcast.DataSource = pc.arrayOfPodcast();
 
         }
@@ -53,7 +57,7 @@ namespace WindowsFormsApp2
             String title = textBoxName.Text;
             String url = textBoxUrl.Text;
             String category = textBoxCat.Text;
-            int i = Convert.ToInt32(numericUpDownFrekvens.Value);
+            int intervall = Convert.ToInt32(numericUpDownFrekvens.Value);
             int v = 0;
             String[] arrayOfText = { title, url, category };
 
@@ -66,8 +70,8 @@ namespace WindowsFormsApp2
             }
             if (v == 3)
             {
-                pc.createPodcast(title, url ,category, i);
-                MessageBox.Show("Sucsess Title=" + title + " Category=" + category + " Url=" + url + " Intervall=" + i);
+                pc.createPodcast(title, url ,category, intervall, 0);// 0 för att den skapar ett nytt objekt
+                MessageBox.Show("Sucsess Title=" + title + " Category=" + category + " Url=" + url + " Intervall=" + intervall);
             }
             else
             {
@@ -85,6 +89,8 @@ namespace WindowsFormsApp2
             textBoxCat.Text = p.category;
             textBoxUrl.Text = p.url;
             numericUpDownFrekvens.Value = p.interval;
+            timerIntervalEdit(p.interval);
+            counter = p.interval;
 
             refreshEpisodeList(await pc.downloadXml(p.url));
         }
@@ -118,7 +124,6 @@ namespace WindowsFormsApp2
             Episode ep = (Episode)episodeListBox.SelectedValue;
             episodDesc.Text = ep.description;
             episodeLabel.Text = ep.title;
-           
         }
 
         private void episodeListBox_DoubleClick(object sender, EventArgs e)
@@ -126,12 +131,14 @@ namespace WindowsFormsApp2
             Episode ep = (Episode)episodeListBox.SelectedValue;
             axWindowsMediaPlayer1.URL = ep.link;
             ep.isRead = true;
+            ep.title = "✔Har spelats upp!  " + ep.title;
+            Podcast p = (Podcast)comboBoxPodcast.SelectedValue;
+            MessageBox.Show(ep.title, p.id.ToString()); // glöm ej ta bort
+           
         }
 
         private void EditPodcast_Click(object sender, EventArgs e)
         {
-            //får inte den att funka...
-            
             String title = textBoxName.Text;
             String url = textBoxUrl.Text;
             String category = textBoxCat.Text;
@@ -161,13 +168,14 @@ namespace WindowsFormsApp2
             }
 
             refreshData();
-
         }
 
         private async void listBoxPodcastCat_SelectedIndexChanged(object sender, EventArgs e)
         {
             Podcast p = (Podcast)listBoxPodcastCat.SelectedValue;
             refreshEpisodeList(await pc.downloadXml(p.url));
+            timerIntervalEdit(p.interval);
+            counter = p.interval;
         }
 
         private void cBCat_SelectedIndexChanged(object sender, EventArgs e)
@@ -190,9 +198,26 @@ namespace WindowsFormsApp2
         private void deletePodcast_Click(object sender, EventArgs e)
         {
             Podcast p = (Podcast)comboBoxPodcast.SelectedValue;
+            XmlGenerator xmlG = new XmlGenerator();
+            xmlG.deletePodcast(p);
+            refreshData();
+        }
 
-
-
+        private void timerIntervalEdit(int i) {
+            timerIntervall.Interval = i*1000;
+        }
+        private void timerTick(object sender, EventArgs e)
+        {
+            refreshData();
+        }
+   
+        private void countDown_Tick(object sender, EventArgs e)
+        {
+            int i = Int32.Parse(countLable.Text)-1;
+            if (i == 0) {
+                i = this.counter;
+            }
+            countLable.Text = i.ToString();
         }
     }
 }
