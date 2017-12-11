@@ -16,6 +16,10 @@ namespace WindowsFormsApp2.BL
         public Episode(string title, string link, string description, bool isRead)
         {
             this.title = title;
+
+            if (isRead == true) {
+                this.title = "✔Har spelats upp!  " + title;
+            }
             this.link = link;
             this.description = description;
             this.isRead = isRead;
