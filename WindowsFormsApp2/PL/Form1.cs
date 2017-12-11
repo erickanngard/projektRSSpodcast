@@ -53,7 +53,7 @@ namespace WindowsFormsApp2
             String title = textBoxName.Text;
             String url = textBoxUrl.Text;
             String category = textBoxCat.Text;
-            int i = Convert.ToInt32(numericUpDownFrekvens.Value);
+            int intervall = Convert.ToInt32(numericUpDownFrekvens.Value);
             int v = 0;
             String[] arrayOfText = { title, url, category };
 
@@ -66,8 +66,8 @@ namespace WindowsFormsApp2
             }
             if (v == 3)
             {
-                pc.createPodcast(title, url ,category, i);
-                MessageBox.Show("Sucsess Title=" + title + " Category=" + category + " Url=" + url + " Intervall=" + i);
+                pc.createPodcast(title, url ,category, intervall, 0);// 0 för att den skapar ett nytt objekt
+                MessageBox.Show("Sucsess Title=" + title + " Category=" + category + " Url=" + url + " Intervall=" + intervall);
             }
             else
             {
@@ -99,6 +99,7 @@ namespace WindowsFormsApp2
 
         private void refreshEpisodeList(List<Episode> list)
         {
+            
             episodeListBox.DisplayMember = "title";
             episodeListBox.DataSource = list;
         }
@@ -126,6 +127,10 @@ namespace WindowsFormsApp2
             Episode ep = (Episode)episodeListBox.SelectedValue;
             axWindowsMediaPlayer1.URL = ep.link;
             ep.isRead = true;
+            ep.title = "✔Har spelats upp!  " + ep.title;
+            episodeListBox.DisplayMember = "title";
+            Podcast p = (Podcast)comboBoxPodcast.SelectedValue;
+            MessageBox.Show(ep.title, p.id.ToString()); // glöm ej ta bort
         }
 
         private void EditPodcast_Click(object sender, EventArgs e)
@@ -190,9 +195,8 @@ namespace WindowsFormsApp2
         private void deletePodcast_Click(object sender, EventArgs e)
         {
             Podcast p = (Podcast)comboBoxPodcast.SelectedValue;
-
-
-
+            XmlGenerator xmlG = new XmlGenerator();
+            xmlG.deletePodcast(p);
         }
     }
 }

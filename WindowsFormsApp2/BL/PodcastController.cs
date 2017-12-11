@@ -14,19 +14,19 @@ namespace WindowsFormsApp2.BL
         {
             // Fråga data-layer om befintlig data.
         }
-        public bool createPodcast(String title, String url, String category, int interval)
+        public bool createPodcast(String title, String url, String category, int interval, int id)
         {
-            Podcast p = new Podcast(title, category, url, interval, new List<Episode>());
+            Podcast p = new Podcast(title, category, url, interval, id, new List<Episode>());
             XmlGenerator.SavePodcast(p);
             return false;
         }
 
         private Podcast[] arrayOfPodcast()
         {
-            Podcast a = new Podcast("Frågar Åt En Kompis", "humor", "https://cdn.radioplay.se/data/rss/479.xml", 3, new List<Episode>());
-            Podcast b = new Podcast("Knoddpodden", "humor", "https://cdn.radioplay.se/data/rss/477.xml#", 4, new List<Episode>());
-            Podcast c = new Podcast("UFOpodden", "humor", "https://cdn.radioplay.se/data/rss/462.xml", 1, new List<Episode>());
-            Podcast d = new Podcast("Freakshow", "humor", "https://cdn.radioplay.se/data/rss/457.xml", 5, new List<Episode>());
+            Podcast a = new Podcast("Frågar Åt En Kompis", "humor", "https://cdn.radioplay.se/data/rss/479.xml", 3, 0, new List<Episode>());
+            Podcast b = new Podcast("Knoddpodden", "humor", "https://cdn.radioplay.se/data/rss/477.xml#", 4, 0, new List<Episode>());
+            Podcast c = new Podcast("UFOpodden", "humor", "https://cdn.radioplay.se/data/rss/462.xml", 1, 0, new List<Episode>());
+            Podcast d = new Podcast("Freakshow", "humor", "https://cdn.radioplay.se/data/rss/457.xml", 5, 0, new List<Episode>());
 
             Podcast[] arrayOfPodcast = { a, b, c, d};
             return arrayOfPodcast;

@@ -110,16 +110,16 @@ public class XmlGenerator
             var title = n.SelectSingleNode("title").InnerText;
             var cat = n.SelectSingleNode("category").InnerText;
             var url = n.SelectSingleNode("url").InnerText;
-            var id = n.SelectSingleNode("id").InnerText;
+            var id = Int32.Parse(n.SelectSingleNode("id").InnerText);
             int interval;
             Int32.TryParse(n.SelectSingleNode("interval").InnerText, out interval);
-            listOfLocalPods.Add(new Podcast(title, cat, url, interval, new List<Episode>()));
+            listOfLocalPods.Add(new Podcast(title, cat, url, interval, id, new List<Episode>()));
         }
 
         return listOfLocalPods;
     }
 
-    public void DeleteCategory(Podcast p)
+    public void DeleteCategory(String Category)
     {
         String rootDir = "XML_Data";
         String xmlfile = "xmldata";
@@ -135,18 +135,56 @@ public class XmlGenerator
         XmlNodeList xmlNodes = xmlDom.SelectNodes("items/Podcast");
 
         List<Podcast> listOfPodcast = loadLocalFiles();
+        List<Podcast> PodcastinCat = new List<Podcast>();
         
         foreach ( Podcast pod in listOfPodcast)
         {
-            //if ( pod == p && pod.title == ) {
-              //  xmlNodes.
-            //}
+            if(pod.category == Category)
+            {
+                PodcastinCat.Add(pod);
+            }
+            
         }
-
+        foreach (Podcast p in PodcastinCat) {
+            foreach (XmlNode n in xmlDom.DocumentElement.SelectNodes("items/Podcast"))
+            {
+                var cat = n.SelectSingleNode("category").InnerText;
+                if ( cat== Category)
+                {
+                    n.SelectSingleNode("category").InnerText = "0";
+                }
+                
+            }
+        }
+        xmlDom.Save(path);
     }
 
-    public void deletePodcast()
+    public void deletePodcast( Podcast p )
     {
+        String rootDir = "XML_Data";
+        String xmlfile = "xmldata";
+        String path = rootDir + "/" + xmlfile + ".xml";
+
+        if (!File.Exists(path))
+        {
+            new List<Podcast>();// return innan
+        }
+
+        XmlDocument xmlDom = new XmlDocument();
+        xmlDom.Load(path);
+        List<Podcast> listOfPodcast = loadLocalFiles();
+        int test = 0;
+
+        foreach (XmlNode n in xmlDom.DocumentElement.SelectNodes("items/Podcast"))
+        {
+            int node = Int32.Parse(n.SelectSingleNode("id").InnerText);
+            if (p.id == node)
+            {
+                n.ParentNode.RemoveChild(n);
+            }
+        }
+        
+        xmlDom.Save(path);
 
     }
 

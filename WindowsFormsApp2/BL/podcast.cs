@@ -17,15 +17,18 @@ namespace WindowsFormsApp2.BL
         public Podcast() {
         }
 
-        public Podcast(string title, string category, string url, int interval, List<Episode> episodes)
+        public Podcast(string title, string category, string url, int interval, int id, List<Episode> episodes)
         {
+            this.id =  0;
             this.title = title;
             this.category = category;
             this.url = url;
             this.interval = interval;
+            this.id = id;
             this.episodes = episodes;
             Random random = new Random();
-            this.id = random.Next(0,999999999);
+            if ( id == 0) {this.id = random.Next(0,999999999); }
+            
         }
     }
 }
