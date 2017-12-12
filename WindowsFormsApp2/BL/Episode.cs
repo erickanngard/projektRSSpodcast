@@ -12,8 +12,9 @@ namespace WindowsFormsApp2.BL
         public String link { get; set; }
         public String description { get; set; }
         public bool isRead { get; set; }
-         
-        public Episode(string title, string link, string description, bool isRead)
+        public Podcast pod { get; set; }
+
+        public Episode(string title, string link, string description, bool isRead, Podcast p)
         {
             this.title = title;
 
@@ -23,6 +24,7 @@ namespace WindowsFormsApp2.BL
             this.link = link;
             this.description = description;
             this.isRead = isRead;
+            this.pod = p;
         }
     }
 }

@@ -55,6 +55,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.countLable = new System.Windows.Forms.Label();
             this.countDown = new System.Windows.Forms.Timer(this.components);
+            this.deleteCategory = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFrekvens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -106,7 +107,7 @@
             0,
             0});
             this.numericUpDownFrekvens.Minimum = new decimal(new int[] {
-            1,
+            20,
             0,
             0,
             0});
@@ -114,7 +115,7 @@
             this.numericUpDownFrekvens.Size = new System.Drawing.Size(103, 20);
             this.numericUpDownFrekvens.TabIndex = 4;
             this.numericUpDownFrekvens.Value = new decimal(new int[] {
-            1,
+            20,
             0,
             0,
             0});
@@ -145,6 +146,7 @@
             this.comboBoxPodcast.Size = new System.Drawing.Size(200, 21);
             this.comboBoxPodcast.TabIndex = 6;
             this.comboBoxPodcast.SelectedIndexChanged += new System.EventHandler(this.comboBoxPodcast_SelectedIndexChanged);
+            this.comboBoxPodcast.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBoxPodcast_MouseClick);
             // 
             // episodeListBox
             // 
@@ -278,6 +280,7 @@
             this.listBoxPodcastCat.Size = new System.Drawing.Size(198, 134);
             this.listBoxPodcastCat.TabIndex = 20;
             this.listBoxPodcastCat.SelectedIndexChanged += new System.EventHandler(this.listBoxPodcastCat_SelectedIndexChanged);
+            this.listBoxPodcastCat.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxPodcastCat_MouseDoubleClick);
             // 
             // timerIntervall
             // 
@@ -298,20 +301,30 @@
             this.countLable.AutoSize = true;
             this.countLable.Location = new System.Drawing.Point(545, 67);
             this.countLable.Name = "countLable";
-            this.countLable.Size = new System.Drawing.Size(19, 13);
+            this.countLable.Size = new System.Drawing.Size(0, 13);
             this.countLable.TabIndex = 22;
-            this.countLable.Text = "10";
             // 
             // countDown
             // 
             this.countDown.Enabled = true;
             this.countDown.Tick += new System.EventHandler(this.countDown_Tick);
             // 
+            // deleteCategory
+            // 
+            this.deleteCategory.Location = new System.Drawing.Point(215, 242);
+            this.deleteCategory.Name = "deleteCategory";
+            this.deleteCategory.Size = new System.Drawing.Size(125, 23);
+            this.deleteCategory.TabIndex = 23;
+            this.deleteCategory.Text = "Ta bort vald categori";
+            this.deleteCategory.UseVisualStyleBackColor = true;
+            this.deleteCategory.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(662, 425);
+            this.Controls.Add(this.deleteCategory);
             this.Controls.Add(this.countLable);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.listBoxPodcastCat);
@@ -373,6 +386,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label countLable;
         private System.Windows.Forms.Timer countDown;
+        private System.Windows.Forms.Button deleteCategory;
     }
 }
 

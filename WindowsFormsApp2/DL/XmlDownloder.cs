@@ -11,7 +11,7 @@ namespace WindowsFormsApp2.DL
     class XmlDownloader
     {
 
-        public static async Task<List<Episode>> LoadRssXml(String rssString)
+        public static async Task<List<Episode>> LoadRssXml(String rssString, Podcast p)
         {
             List<Episode> listOfEpisodes = new List<Episode>();
 
@@ -26,7 +26,7 @@ namespace WindowsFormsApp2.DL
                 var url = node.SelectSingleNode("link").InnerText;
                 //var desc = node.SelectSingleNode("itunes:summary").InnerText;
                 var desc = "";
-                Episode e = new Episode(title, url,desc, false);
+                Episode e = new Episode(title, url,desc, false, p);
                 listOfEpisodes.Add(e);
             }
 

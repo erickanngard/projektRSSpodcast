@@ -47,7 +47,7 @@ namespace WindowsFormsApp2.BL
 
             foreach (Podcast p in podList)
             {
-                if( !ls.Contains(p.category))
+                if( !ls.Contains(p.category) && p.category != "0")
                 {
                     ls.Add(p.category);
                 }
@@ -55,7 +55,9 @@ namespace WindowsFormsApp2.BL
             return ls;
         }
 
-        internal async Task<List<Episode>> downloadXml(string url) => await XmlDownloader.LoadRssXml(url);
+        
+
+        internal async Task<List<Episode>> downloadXml(string url, Podcast p) => await XmlDownloader.LoadRssXml(url, p);
     }
 }
  
